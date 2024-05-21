@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math/rand/v2"
 	"os"
@@ -14,11 +15,12 @@ func main() {
 	}
 
 	outfile, err := os.Create("input.txt")
+	writer := bufio.NewWriter(outfile)
 	if err != nil {
 		panic(err)
 	}
 	for i := int64(0); i < n; i++ {
-		outfile.WriteString(fmt.Sprintln(rand.Int64()))
+		writer.WriteString(fmt.Sprintln(rand.Uint64N(2147483647)))
 	}
 	err = outfile.Close()
 	if err != nil {
